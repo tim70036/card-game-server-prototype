@@ -1,0 +1,17 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/coregrpc";
+option csharp_namespace = "Joker.Grpc";
+option (csharp_assembly) = "Joker.Common";
+option (csharp_access) = public;
+
+message ConnectRequest {
+  string id_token = 1;
+}
+
+message PingResponse {
+  google.protobuf.Timestamp server_time = 1;
+}

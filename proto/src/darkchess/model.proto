@@ -1,0 +1,103 @@
+syntax = "proto3";
+package darkchess;
+
+import "global_import.proto";
+import "common/user_group.proto";
+import "common/room_info.proto";
+import "common/buddy_group.proto";
+import "darkchess/game_state.proto";
+import "darkchess/board.proto";
+import "common/chess_piece.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+
+option csharp_namespace = "Joker.Gameplay.DarkChess.Models";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+// 在 state.Publish 中放異動的資料。
+message Model {
+  optional common.UserGroup user_group = 1;
+  optional common.RoomInfo room_info = 2;
+  optional common.BuddyGroup buddy_group = 3;
+
+  optional GameState resync_game_state = 4;
+  optional GameInfo game_info = 5;
+  optional PlayerGroup player_group = 6;
+  optional PlaySetting play_setting = 7;
+
+  optional Board board = 8;
+  optional CapturedPieces captured_pieces = 9;
+  optional ClaimDraw claim_draw = 10;
+  optional Surrender surrender = 11;
+  optional PickResult pick_result = 12;
+  optional ActionHintGroup action_hint_group = 13;
+}
+
+message GameInfo {
+  string game_id = 1;
+  int32 round_count = 2;
+  GameSetting setting = 3;
+}
+
+message GameSetting {
+  string game_meta_uid = 1;
+  int32 total_round_count = 2;
+  int32 turn_seconds = 3;
+  int32 extra_turn_seconds = 4;
+  int32 ante_amount = 5;
+  int32 enter_limit = 6;
+  int32 water_pct = 7;
+  int32 max_chase_same_piece_count = 8;
+  int32 max_repeat_moves = 9;
+  bool is_capture_turned_pieces = 10;
+  bool is_capture_turn_down_pieces = 11;
+  bool is_capture_turn_down_piece = 12;
+  bool has_rook_rules = 13;
+  bool has_bishop_rules = 14;
+}
+
+message ActionHint {
+  string uid = 1;
+  google.protobuf.Duration turn_duration = 2;
+  int32 turn_count = 3;
+  int32 remaining_time_extend_count = 4;
+  int32 remaining_draw_offer_count = 5;
+  optional Cell freeze_cell = 6;
+}
+
+message ActionHintGroup {
+  map<string, ActionHint> action_hints = 1;
+  int32 repeat_moves_count = 2;
+  LastActionCell last_action = 3;
+}
+
+message PickResult {
+  map<string, common.CnChessPiece> pieces = 1;
+  optional string first_uid = 2;
+}
+
+message Player {
+  string uid = 1;
+  common.CnChessColorType chess_color = 2;
+}
+
+message PlayerGroup {
+  map<string, Player> players = 1;
+}
+
+message PlaySetting {
+  bool is_auto = 1;
+}
+
+// broadcast for claimer.
+// answer don't need to broadcast this message weather accept or reject.
+message ClaimDraw {
+  string claim_uid = 1;  // act uid
+  int32 claim_turn = 2;
+  bool claimed = 3;
+  bool answered = 4;
+}
+
+message Surrender {
+  string uid = 1;
+}

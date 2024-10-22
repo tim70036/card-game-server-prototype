@@ -1,0 +1,23 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/commongrpc";
+option csharp_namespace = "Joker.Gameplay.Grpc.Models";
+option (csharp_assembly) = "Joker.Gameplay.Common";
+option (csharp_access) = public;
+
+message RankInfo {
+  string Uid = 1;
+  int32 BeforeRank = 2;
+  int32 AfterRank = 3;
+  int32 BeforeRankPoint = 4;
+  int32 PointChanged = 5;
+  int32 ExtraPointChanged = 6;
+  int32 AfterRankPoint = 7;
+  int32 BeforeRate = 8;
+  int32 RateChanged = 9;
+  int32 BeforeRankUpPoint = 10;
+  int32 AfterRankUpPoint = 11;
+}

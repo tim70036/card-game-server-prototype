@@ -1,0 +1,10 @@
+; indicate this is the root of the project
+root = true
+
+[*.go]
+charset = utf-8
+indent_style = tab
+indent_size = 2
+end_of_line = LF
+insert_final_newline = true
+trim_trailing_whitespace = true

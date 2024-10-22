@@ -1,0 +1,16 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/poker_hand.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Jackpot {
+    string uid = 1;
+    PokerHand hand = 2;
+    int32 amount = 3;
+}

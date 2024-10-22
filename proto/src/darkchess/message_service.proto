@@ -1,0 +1,18 @@
+syntax = "proto3";
+package darkchess;
+
+import "global_import.proto";
+import "darkchess/game_state.proto";
+import "darkchess/model.proto";
+import "darkchess/event.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+
+option csharp_namespace = "Joker.Gameplay.DarkChess.Services";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+service MessageService {
+  rpc SubscribeGameState(google.protobuf.Empty) returns (stream GameState) {}
+  rpc SubscribeModel(google.protobuf.Empty) returns (stream Model) {}
+  rpc SubscribeEvent(google.protobuf.Empty) returns (stream Event) {}
+}

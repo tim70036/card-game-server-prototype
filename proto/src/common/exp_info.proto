@@ -1,0 +1,18 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/commongrpc";
+option csharp_namespace = "Joker.Gameplay.Grpc.Models";
+option (csharp_assembly) = "Joker.Gameplay.Common";
+option (csharp_access) = public;
+
+message ExpInfo {
+    int32 before_level = 1;
+    int32 before_exp = 2;
+    int32 level_up_exp = 3;
+    int32 next_level = 4;
+    int32 next_level_up_exp = 5;
+    int32 increase_exp = 6;
+}

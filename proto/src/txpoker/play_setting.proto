@@ -1,0 +1,19 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message PlaySetting {
+    bool wait_bb = 1;
+
+    bool auto_top_up = 2;
+
+    double auto_top_up_threshold_percent = 3;
+
+    double auto_top_up_chip_percent = 4;
+}

@@ -1,0 +1,11 @@
+﻿syntax = "proto3";
+
+import public "google/protobuf/empty.proto";
+import public "google/protobuf/timestamp.proto";
+import public "google/protobuf/duration.proto";
+import public "extension/csharp_options.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc";
+option csharp_namespace = "Joker.Grpc";
+option (csharp_assembly) = "Joker.Common";
+option (csharp_access) = public;

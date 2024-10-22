@@ -1,0 +1,14 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "common/user_group.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message UserCacheGroup {
+    map<string, common.User> users = 1;
+}

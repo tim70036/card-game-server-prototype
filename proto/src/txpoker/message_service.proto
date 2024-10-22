@@ -1,0 +1,14 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/message.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Services";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+service MessageService {
+    rpc Subscribe(google.protobuf.Empty) returns (stream Message) {}
+}

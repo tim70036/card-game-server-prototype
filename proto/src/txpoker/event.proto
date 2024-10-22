@@ -1,0 +1,23 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "common/kickout.proto";
+import "common/exp_info.proto";
+import "txpoker/warning.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Event {
+    optional common.Kickout kickout = 1;
+    optional common.ExpInfo exp_info = 3;
+    optional Warning warning = 4;
+    optional TopUpSuccess topup_success = 5;
+}
+
+message TopUpSuccess {
+    int32 amount = 1;
+}

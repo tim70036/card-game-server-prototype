@@ -1,0 +1,73 @@
+syntax = "proto3";
+package darkchess;
+
+import "global_import.proto";
+import "common/action.proto";
+import "common/resync.proto";
+import "common/chess_piece.proto";
+import "darkchess/board.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+option csharp_namespace = "Joker.Gameplay.DarkChess.Services";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+service ActionService {
+  rpc Resync(common.ResyncRequest) returns (google.protobuf.Empty) {}
+
+  rpc Kick(common.KickRequest) returns (google.protobuf.Empty) {}
+  rpc AddAi(common.AddAiRequest) returns (google.protobuf.Empty) {}
+  rpc Ready(common.ReadyRequest) returns (google.protobuf.Empty) {}
+  rpc StartGame(common.StartGameRequest) returns (google.protobuf.Empty) {}
+
+  rpc SkipScoreboard(SkipScoreboardRequest) returns (google.protobuf.Empty) {}
+  rpc UpdatePlaySetting(UpdatePlaySettingRequest) returns (google.protobuf.Empty) {}
+
+  rpc Pick(PickRequest) returns (google.protobuf.Empty) {}//bonus
+  rpc Reveal(RevealRequest) returns (google.protobuf.Empty) {}
+  rpc Move(MoveRequest) returns (google.protobuf.Empty) {}
+  rpc Capture(CaptureRequest) returns (google.protobuf.Empty) {}
+  rpc Surrender(SurrenderRequest) returns (google.protobuf.Empty) {}
+  rpc ClaimDraw(ClaimDrawRequest) returns (google.protobuf.Empty) {}
+  rpc AnswerDraw(AnswerDrawRequest) returns (google.protobuf.Empty) {}
+  rpc AskExtraSeconds(AskExtraSecondsRequest) returns (google.protobuf.Empty) {}
+}
+
+message SkipScoreboardRequest {}
+
+message UpdatePlaySettingRequest {
+  bool is_auto = 1;
+}
+
+message PickRequest{}
+
+message RevealRequest{
+  GridPosition grid_position = 1;
+}
+
+message MoveRequest {
+  GridPosition go_to = 1;
+  common.CnChessPiece move_piece = 2;
+}
+
+message CaptureRequest {
+  GridPosition go_to = 1;
+  common.CnChessPiece move_piece = 2;
+  common.CnChessPiece captured_piece = 3;
+}
+
+message SurrenderRequest {
+  string uid = 1;
+}
+
+message ClaimDrawRequest {
+  string uid = 1; // act uid
+}
+
+message AnswerDrawRequest {
+  string uid = 1; // act uid
+  bool is_accept = 2;
+}
+
+message AskExtraSecondsRequest {
+  string uid = 1;
+}

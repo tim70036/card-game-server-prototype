@@ -1,0 +1,18 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/model.proto";
+import "txpoker/event.proto";
+import "txpoker/game_state.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Message {
+    optional GameState game_state = 1 ;
+    optional Model model = 2;
+    optional Event event = 3;
+}

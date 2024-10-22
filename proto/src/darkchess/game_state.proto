@@ -1,0 +1,119 @@
+syntax = "proto3";
+package darkchess;
+
+import "global_import.proto";
+import "darkchess/board.proto";
+import "darkchess/scoreboard.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+
+option csharp_namespace = "Joker.Gameplay.DarkChess.Models";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+message GameState {
+  string name = 1;
+  google.protobuf.Timestamp timestamp = 2;
+
+  oneof context {
+    InitStateContext init_state_context = 11;
+    ResetGameStateContext reset_game_state_context = 12;
+    WaitUserStateContext wait_user_state_context = 13;
+    WaitingRoomStateContext waiting_room_state_context = 14;
+    StartGameStateContext start_game_state_context = 15;
+    ResetRoundStateContext reset_round_state_context = 16;
+    StartRoundStateContext start_round_state_context = 17;
+    EndRoundStateContext end_round_state_context = 18;
+    RoundScoreboardStateContext round_scoreboard_state_context = 19;
+    EndGameStateContext end_game_state_context = 20;
+    GameScoreboardStateContext game_scoreboard_state_context = 21;
+    CloseStateContext close_state_context = 22;
+
+    // between StartRoundState and EndRoundState
+    PickFirstStateContext pick_first_state_context = 23;
+    StartTurnStateContext start_turn_state_context = 24;
+    WaitActionStateContext wait_action_state_context = 25;
+    RevealStateContext reveal_state_context = 26;
+    MoveStateContext move_state_context = 27;
+    CaptureStateContext capture_state_context = 28;
+    EndTurnStateContext end_turn_state_context = 29;
+    DrawStateContext draw_state_context = 30;
+    SurrenderStateContext surrender_state_context = 31;
+    ShowRoundResultStateContext show_round_result_state_context = 32;
+  }
+}
+
+message InitStateContext {}
+
+message ResetGameStateContext {}
+
+message WaitUserStateContext {}
+
+message WaitingRoomStateContext {}
+
+message StartGameStateContext {}
+
+message ResetRoundStateContext {}
+
+message StartRoundStateContext {}
+
+message EndRoundStateContext {}
+
+message RoundScoreboardStateContext {
+  google.protobuf.Duration duration = 1;
+  RoundScoreboard scoreboard = 2;
+}
+
+message EndGameStateContext {}
+
+message GameScoreboardStateContext {
+  google.protobuf.Duration duration = 1;
+  GameScoreboard scoreboard = 2;
+}
+
+message CloseStateContext {}
+
+message PickFirstStateContext {
+  google.protobuf.Duration duration = 1;
+}
+
+message StartTurnStateContext {
+  string actor_uid = 1;
+  int32 turn_count = 2;
+}
+
+message WaitActionStateContext {
+  string actor_uid = 1;
+  int32 turn_count = 2;
+}
+
+message RevealStateContext {
+  string actor_uid = 1;
+  Cell cell = 2;
+}
+
+message MoveStateContext {
+  string actor_uid = 1;
+  Cell cell = 2; // GridPosition: origin position
+  GridPosition to_grid_position = 3;
+}
+
+message CaptureStateContext {
+  string actor_uid = 1;
+  Cell cell = 2; // GridPosition: origin position
+  Cell captured_cell = 3; // GridPosition: origin position
+}
+
+message EndTurnStateContext {
+  string actor_uid = 1;
+}
+
+message DrawStateContext {}
+
+message SurrenderStateContext {
+  string surrender_uid = 1;
+}
+
+message ShowRoundResultStateContext {
+  string winner_uid = 1;
+  bool is_draw = 2;
+}

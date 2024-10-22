@@ -1,0 +1,25 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/stats_event_type.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Stats {
+    message EventSum {
+        statsevent.StatsEventType type = 1;
+        int32 amount = 2;
+    }
+
+    string uid = 1;
+    int32 highest_game_win_amount = 2;
+    repeated EventSum event_sums = 3;
+}
+
+message StatsCacheGroup {
+    map<string, Stats> stats = 1;
+}

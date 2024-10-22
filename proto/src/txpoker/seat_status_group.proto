@@ -1,0 +1,31 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/seat_status_state.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Services";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message SeatStatus {
+    string uid = 1;
+    int32 chip = 2;
+    seatstatusstate.SeatStatusState state = 3;
+    google.protobuf.Timestamp sit_out_start_timestamp = 4;
+    google.protobuf.Duration sit_out_duration = 5;
+    google.protobuf.Duration action_extra_duration = 6;
+    bool should_place_bb = 7;
+}
+
+message SeatStatusGroup {
+    // seat id -> uid
+    map<int32, string> table_uids = 1;
+
+    // uid -> seat status
+    map<string, SeatStatus> status = 2;
+
+    // uid -> top chip
+    map<string, int32> top_up_queue = 3;
+}

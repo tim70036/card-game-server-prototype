@@ -1,0 +1,24 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/commongrpc";
+option csharp_namespace = "Joker.Gameplay.Grpc.Models";
+option (csharp_assembly) = "Joker.Gameplay.Common";
+option (csharp_access) = public;
+
+message User {
+    string uid = 1;
+    string username = 2;
+    bool is_connected = 3;
+    bool has_entered = 4;
+    int32 cash = 5;
+    int32 level = 6;
+    int32 room_cards = 7;
+    string short_uid = 8;
+}
+
+message UserGroup {
+    map<string, User> users = 1;
+}

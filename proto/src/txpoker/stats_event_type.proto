@@ -1,0 +1,55 @@
+syntax = "proto3";
+package txpoker.statsevent;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+
+enum StatsEventType {
+    UNDEFINED = 0;
+    GAME = 1;
+    BET_GAME = 2;
+    PREFLOP_GAME = 3;
+    FLOP_GAME = 4;
+    TURN_GAME = 5;
+    RIVER_GAME = 6;
+    SHOWDOWN_GAME = 7;
+    GAME_WIN = 8;
+    SHOWDOWN_GAME_WIN = 9;
+    GAME_WIN_AMOUNT = 10;
+
+    STRAIGHT = 101;
+    FLUSH = 102;
+    FULL_HOUSE = 103;
+    FOUR_OF_A_KIND = 104;
+    STRAIGHT_FLUSH = 105;
+    ROYAL_FLUSH = 106;
+
+    BET = 201;
+    RAISE = 202;
+    CALL = 203;
+    FOLD = 204;
+
+    PREFLOP_FOLD = 301;
+    PREFLOP_RAISE = 302;
+    PREFLOP_LAST_RAISE = 303;
+    PREFLOP_RE_RAISE = 304;
+
+    FLOP_FOLD = 401;
+    FLOP_BET = 402;
+    FLOP_LAST_RAISE = 403;
+    FLOP_CONTINUE_BET = 404;
+
+    TURN_FOLD = 501;
+    TURN_BET = 502;
+    TURN_LAST_RAISE = 503;
+    TURN_CONTINUE_BET = 504;
+
+    RIVER_FOLD = 601;
+    RIVER_BET = 602;
+    RIVER_CONTINUE_BET = 603;
+}

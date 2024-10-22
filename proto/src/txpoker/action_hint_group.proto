@@ -1,0 +1,24 @@
+syntax = "proto3";
+package txpoker;
+
+import "global_import.proto";
+import "txpoker/bet_action_type.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message ActionHint {
+    string uid = 1;
+    int32 bet_chip = 2;
+    int32 calling_chip = 3;
+    int32 min_raise_chip = 4;
+    betActionType.BetActionType action = 5;
+    repeated betActionType.BetActionType available_actions = 6;
+    google.protobuf.Duration duration = 7;
+}
+
+message ActionHintGroup {
+    map<string, ActionHint> hints = 1;
+    ActionHint raiser_hint = 2;
+}

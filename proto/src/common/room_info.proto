@@ -1,0 +1,41 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/commongrpc";
+option csharp_namespace = "Joker.Gameplay.Grpc.Models";
+option (csharp_assembly) = "Joker.Gameplay.Common";
+option (csharp_access) = public;
+
+message RoomInfo {
+    string room_id = 1;
+    string short_room_id = 2;
+    GameType room_game_type = 3;
+    GameMode room_game_mode = 4;
+    string game_meta_uid = 5;
+    bool is_premium = 6;
+
+    enum GameType {
+        CMJ = 0; // todo: CMJ 搬移後，這個要改成 undefined/-1
+        DMJ = 1;
+        YABLON = 2;
+        CN_POKER = 3;
+        MJ = 4;
+        AMJ = 5;
+        TX_POKER = 6;
+        DARK_CHESS = 7;
+        HORSE_RACE_MJ = 8;
+        TX_POKER_ZOOM = 9;
+    }
+
+    enum GameMode {
+        BUDDY = 0;
+        COMMON = 1;
+        CLUB = 2;
+        RANK = 3;
+        CARNIVAL = 4;
+        QUALIFIER = 5;
+        ELIMINATION = 6;
+    }
+}

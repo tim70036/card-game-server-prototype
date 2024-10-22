@@ -1,0 +1,17 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message GameInfo {
+    int32 creation_id = 1;
+    int32 total_round_count = 2;
+    repeated string round_id_history = 3;
+    string round_id = 4;
+    float vpip = 5;
+}

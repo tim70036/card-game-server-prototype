@@ -1,0 +1,18 @@
+syntax = "proto3";
+package txpoker.participantstate;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+enum ParticipantState {
+    UNDEFINED = 0;
+    OBSERVING = 1;
+    MATCHING = 2;
+    PLAYING = 3;
+    BUYING_IN = 4;
+    CASHING_OUT = 5;
+    EXITING_MATCH = 6;
+}

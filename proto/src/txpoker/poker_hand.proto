@@ -1,0 +1,16 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/poker_hand_type.proto";
+import "txpoker/card.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message PokerHand {
+    pokerhandtype.PokerHandType type = 1;
+    repeated Card cards = 2;
+}

@@ -1,0 +1,47 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "common/action.proto";
+import "common/resync.proto";
+import "txpoker/action.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Services";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+service ActionService {
+    rpc Resync(common.ResyncRequest) returns (google.protobuf.Empty) {}
+    rpc Ready(common.ReadyRequest) returns (google.protobuf.Empty) {}
+    rpc StartGame(common.StartGameRequest) returns (google.protobuf.Empty) {}
+    rpc Kick(common.KickRequest) returns (google.protobuf.Empty) {}
+    rpc ChangeRoom(common.ChangeRoomRequest) returns (google.protobuf.Empty) {}
+
+    rpc StandUp(StandUpRequest) returns (google.protobuf.Empty) {}
+    rpc SitDown(SitDownRequest) returns (google.protobuf.Empty) {}
+    rpc BuyIn(BuyInRequest) returns (google.protobuf.Empty) {}
+    rpc SitOut(SitOutRequest) returns (google.protobuf.Empty) {}
+    rpc TopUp(TopUpRequest) returns (google.protobuf.Empty) {}
+
+    rpc Fold(FoldRequest) returns (google.protobuf.Empty) {}
+    rpc Check(CheckRequest) returns (google.protobuf.Empty) {}
+    rpc Bet(BetRequest) returns (google.protobuf.Empty) {}
+    rpc Call(CallRequest) returns (google.protobuf.Empty) {}
+    rpc Raise(RaiseRequest) returns (google.protobuf.Empty) {}
+    rpc AllIn(AllInRequest) returns (google.protobuf.Empty) {}
+    rpc ShowFold(ShowFoldRequest) returns (google.protobuf.Empty) {}
+
+    rpc UpdateWaitBBSetting(UpdateWaitBBSettingRequest) returns (google.protobuf.Empty) {}
+    rpc UpdateAutoTopUpSetting(UpdateAutoTopUpSettingRequest) returns (google.protobuf.Empty) {}
+
+    rpc ForceBuyIn(ForceBuyInRequest) returns (ForceBuyInResponse) {}
+}
+
+message ForceBuyInRequest {}
+
+message ForceBuyInResponse {
+    bool is_buy_in = 1;
+    int32 buy_in_chip = 2;
+    google.protobuf.Duration remainTime = 3;
+}

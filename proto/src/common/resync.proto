@@ -1,0 +1,11 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/commongrpc";
+option csharp_namespace = "Joker.Gameplay.Grpc.Models";
+option (csharp_assembly) = "Joker.Gameplay.Common";
+option (csharp_access) = public;
+
+message ResyncRequest {}

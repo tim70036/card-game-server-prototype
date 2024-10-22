@@ -1,0 +1,13 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message ChipCacheGroup {
+    map<string, int32> seat_status_chips = 1;
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/commongrpc";
+option csharp_namespace = "Joker.Gameplay.Grpc.Models";
+option (csharp_assembly) = "Joker.Gameplay.Common";
+option (csharp_access) = public;
+
+enum KickoutReason {
+    GAME_EXCEPTION = 0;
+    GAME_CLOSED = 1;
+    NOT_ENOUGH_CASH = 2;
+    USER_REQUESTED = 3;
+    OWNER_REQUESTED = 4;
+    CHANGE_ROOM = 5;
+    ELIMINATION_ABORT = 6;
+    MAINTENANCE = 7; 
+    IDLE_TIMEOUT = 8;
+    ROOM_EXPIRED = 9;
+    NOT_ENOUGH_ROOM_CARD = 10;
+}
+
+message Kickout {
+    KickoutReason reason = 1;
+}

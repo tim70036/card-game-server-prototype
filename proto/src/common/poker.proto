@@ -1,0 +1,35 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/commongrpc";
+
+option csharp_namespace = "Joker.Gameplay.Common";
+option (csharp_assembly) = "Joker.Gameplay.Common";
+option (csharp_access) = public;
+
+enum CardFace {
+  CARD_FACE_INVALID = 0;
+  CARD_FACE_ACE = 1;
+  CARD_FACE_TWO = 2;
+  CARD_FACE_THREE = 3;
+  CARD_FACE_FOUR = 4;
+  CARD_FACE_FIVE = 5;
+  CARD_FACE_SIX = 6;
+  CARD_FACE_SEVEN = 7;
+  CARD_FACE_EIGHT = 8;
+  CARD_FACE_NINE = 9;
+  CARD_FACE_TEN = 10;
+  CARD_FACE_JACK = 11;
+  CARD_FACE_QUEEN = 12;
+  CARD_FACE_KING = 13;
+}
+
+enum CardSuit {
+  CARD_SUIT_INVALID = 0;
+  CARD_SUIT_CLUBS = 1;
+  CARD_SUIT_DIAMONDS = 2;
+  CARD_SUIT_HEARTS = 3;
+  CARD_SUIT_SPADES = 4;
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+
+enum WarningReason {
+    UNDEFINED = 0;
+    IDLE = 1;
+    INSUFFICIENT_BALANCE = 2;
+    AUTO_TOP_UP_FAILED = 3;
+    RESERVE_TIMEOUT = 4;
+}
+
+message Warning {
+    WarningReason reason = 1;
+}

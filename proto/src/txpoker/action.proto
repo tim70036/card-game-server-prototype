@@ -1,0 +1,57 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message StandUpRequest{}
+
+message SitDownRequest{
+    int32 seat_id = 1;
+}
+
+message BuyInRequest {
+    int32 buy_in_chip = 1;
+}
+
+message SitOutRequest{}
+
+message TopUpRequest{
+    int32 top_up_chip = 1;
+}
+
+message FoldRequest {}
+
+message CheckRequest {}
+
+message BetRequest {
+    int32 chip = 1;
+}
+
+message CallRequest {}
+
+message RaiseRequest {
+    int32 chip = 1;
+}
+
+message AllInRequest {}
+
+message ShowFoldRequest {
+    int32 show_fold_type = 1; // 0b00, 0b01, 0b10, 0b11
+}
+
+message UpdateWaitBBSettingRequest {
+    bool waitBB = 1;
+}
+
+message UpdateAutoTopUpSettingRequest {
+    bool auto_top_up = 1;
+
+    double auto_top_up_threshold_percent = 2;
+
+    double auto_top_up_chip_percent = 3;
+}

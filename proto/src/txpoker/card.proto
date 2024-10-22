@@ -1,0 +1,20 @@
+syntax = "proto3";
+package txpoker;
+
+import "global_import.proto";
+import "txpoker/suit.proto";
+import "txpoker/face.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Card {
+    suit.Suit suit = 1;
+    face.Face face = 2;
+    int32 deck = 3;
+}
+
+message CardList {
+    repeated Card cards = 1;
+}

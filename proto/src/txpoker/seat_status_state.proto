@@ -1,0 +1,20 @@
+syntax = "proto3";
+package txpoker.seatstatusstate;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+enum SeatStatusState {
+    UNDEFINED = 0;
+    STANDING = 1;
+    RESERVING = 2;
+    JOINING = 3;
+    PLAYING = 4;
+    SITTING_OUT = 5;
+    CASHING_OUT = 6;
+    BUYING_IN = 7;
+    WAITING = 8;
+}

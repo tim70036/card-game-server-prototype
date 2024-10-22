@@ -1,0 +1,22 @@
+syntax = "proto3";
+package txpoker.pokerhandtype;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+enum PokerHandType {
+    UNDEFINED       = 0;
+	HIGH_CARD       = 1;
+	PAIR            = 2;
+	TWO_PAIR        = 3;
+	THREE_OF_A_KIND = 4;
+	STRAIGHT        = 5;
+	FLUSH           = 6;
+	FULL_HOUSE      = 7;
+	FOUR_OF_A_KIND  = 8;
+	STRAIGHT_FLUSH  = 9;
+	ROYAL_FLUSH     = 10;
+}

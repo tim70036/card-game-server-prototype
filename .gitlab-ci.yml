@@ -1,0 +1,51 @@
+stages:
+- build
+
+default:
+  tags:
+    - gs-runner
+    - k8s
+
+variables:
+  ARTIFACT_PATH: ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT_ID}/joker/${CI_PROJECT_NAME}
+
+.build_to_gcp:
+  image:
+    name: gcr.io/kaniko-project/executor:v1.12.1-debug
+    entrypoint: [""]
+  script:
+    # https://github.com/GoogleContainerTools/kaniko#pushing-to-google-gcr
+    - export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/kaniko-secret.json
+    - echo $GCP_SERVICE_ACCOUNT_KEY > $GOOGLE_APPLICATION_CREDENTIALS
+
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${ARTIFACT_PATH}:${IMAGE_TAG}"
+      --destination "${ARTIFACT_PATH}:latest"
+      --push-retry 3
+
+build_branch:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == "development"
+      when: always
+    - if: $CI_COMMIT_BRANCH == "staging"
+      when: always
+    - if: $CI_COMMIT_BRANCH == "master"
+      when: manual
+  variables:
+    IMAGE_TAG: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}
+  extends:
+    - .build_to_gcp
+
+build_tag:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v\d+.\d+.\d+-?.*$/
+      when: always
+  variables:
+    IMAGE_TAG: ${CI_COMMIT_TAG}
+  extends:
+    - .build_to_gcp
+

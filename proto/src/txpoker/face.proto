@@ -1,0 +1,25 @@
+syntax = "proto3";
+package txpoker.face;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+enum Face {
+    UNDEFINED = 0;
+    ACE       = 1;
+    TWO       = 2;
+    THREE     = 3;
+    FOUR      = 4;
+    FIVE      = 5;
+    SIX       = 6;
+    SEVEN     = 7;
+    EIGHT     = 8;
+    NINE      = 9;
+    TEN       = 10;
+    JACK      = 11;
+    QUEEN     = 12;
+    KING      = 13;
+}

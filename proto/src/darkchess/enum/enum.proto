@@ -1,0 +1,15 @@
+syntax = "proto3";
+package darkchess;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+option csharp_namespace = "Joker.Gameplay.DarkChess.Models";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+enum ScoreModifierType {
+    SCORE_MODIFIER_TYPE_INVALID = 0;
+    SCORE_MODIFIER_TYPE_1 = 1;
+    SCORE_MODIFIER_TYPE_3 = 3;
+    SCORE_MODIFIER_TYPE_5 = 5;
+}

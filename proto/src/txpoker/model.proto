@@ -1,0 +1,48 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "common/user_group.proto";
+import "common/room_info.proto";
+import "common/buddy_group.proto";
+import "txpoker/game_state.proto";
+import "txpoker/game_info.proto";
+import "txpoker/game_setting.proto";
+import "txpoker/player_group.proto";
+import "txpoker/seat_status_group.proto";
+import "txpoker/action_hint_group.proto";
+import "txpoker/table.proto";
+import "txpoker/play_setting.proto";
+import "txpoker/stats_cache_group.proto";
+import "txpoker/chip_cache_group.proto";
+import "txpoker/user_cache_group.proto";
+import "txpoker/participant.proto";
+import "txpoker/table_profits_cache_group.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Model {
+    optional common.UserGroup user_group = 1;
+    optional common.RoomInfo room_info = 2;
+    optional common.BuddyGroup buddy_group = 3;
+
+    optional GameState resync_game_state = 11;
+    optional GameInfo game_info = 12;
+    optional GameSetting game_setting = 13;
+    optional PlayerGroup player_group = 14;
+    optional SeatStatusGroup seat_status_group = 15;
+    optional ActionHintGroup action_hint_group = 16;
+    optional Table table = 17;
+    optional PlaySetting play_setting = 18;
+    optional StatsCacheGroup stats_cache_group = 19;
+    optional ChipCacheGroup chip_cache_group = 20;
+    optional UserCacheGroup user_cache_group = 21;
+    optional TableProfitsGroup table_profits_group = 22;
+
+    optional Participant participant = 31;
+    optional common.User user = 32;
+    optional Stats stats = 33;
+}

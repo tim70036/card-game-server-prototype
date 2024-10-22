@@ -1,0 +1,21 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message TableProfits {
+  string uid = 1;
+  string username = 2;
+  int32 count_games = 3;
+  int32 sum_buy_in_chips = 4;
+  int32 sum_win_lose_chips = 5;
+}
+
+message TableProfitsGroup {
+  map<string, TableProfits> table_profits = 1;
+}

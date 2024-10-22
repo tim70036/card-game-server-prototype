@@ -1,0 +1,14 @@
+syntax = "proto3";
+package darkchess;
+
+import "global_import.proto";
+import "common/kickout.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+
+option csharp_namespace = "Joker.Gameplay.DarkChess.Models";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+message Event {
+  optional common.Kickout kickout = 1;
+}

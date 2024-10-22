@@ -1,0 +1,124 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/table.proto";
+import "txpoker/jackpot.proto";
+import "txpoker/poker_hand.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message GameState {
+    string name = 1;
+    google.protobuf.Timestamp timestamp = 2;
+
+    oneof context {
+        ClosedStateContext closed_state_context = 11;
+        InitStateContext init_state_context = 12;
+        ResetStateContext reset_state_context = 13;
+        WaitUserStateContext wait_user_state_context = 14;
+        WaitingRoomStateContext waiting_room_state_context = 15;
+
+        StartRoundStateContext start_round_state_context = 21;
+        DealPocketStateContext deal_pocket_state_context = 22;
+        EvaluateActionStateContext evaluate_action_state_context = 23;
+        CollectChipStateContext collect_chip_state_context = 24;
+        DealCommunityStateContext deal_community_state_context = 25;
+
+        WaitActionStateContext wait_action_state_context = 31;
+        FoldStateContext fold_state_context = 32;
+        CheckStateContext check_state_context = 33;
+        BetStateContext bet_state_context = 34;
+        CallStateContext call_state_context = 35;
+        RaiseStateContext raise_state_context = 36;
+        AllInStateContext all_in_state_context = 37;
+
+        DeclareShowdownStateContext declare_showdown_state_context = 51;
+        ShowdownStateContext showdown_state_context = 52;
+        DealRemainCommunityStateContext deal_remain_community_state_context = 53;
+        EvaluateWinnerStateContext evaluate_winner_state_context = 54;
+        DeclareWinnerStateContext declare_winner_state_context = 55;
+        JackpotStateContext jackpot_state_context = 56;
+        EndRoundStateContext end_round_state_context = 57;
+    }
+}
+
+message ClosedStateContext {}
+
+message InitStateContext {}
+
+message ResetStateContext {}
+
+message WaitUserStateContext {}
+
+message WaitingRoomStateContext {}
+
+message RoundResetStateContext {}
+
+message WaitPlayerStateContext {}
+
+message StartRoundStateContext {}
+
+message DealPocketStateContext {}
+
+message EvaluateActionStateContext {}
+
+message CollectChipStateContext {
+    map<string, int32> collected_chips = 1;
+    repeated Pot pots = 2;
+}
+
+message DealCommunityStateContext {}
+
+message WaitActionStateContext {
+    string actor_uid = 1;
+    google.protobuf.Duration duration = 2;
+}
+
+message FoldStateContext {
+    string actor_uid = 1;
+}
+
+message CheckStateContext {
+    string actor_uid = 1;
+}
+
+message BetStateContext {
+    string actor_uid = 1;
+}
+
+message CallStateContext {
+    string actor_uid = 1;
+}
+
+message RaiseStateContext {
+    string actor_uid = 1;
+}
+
+message AllInStateContext {
+    string actor_uid = 1;
+}
+
+message DeclareShowdownStateContext {}
+
+message ShowdownStateContext {}
+
+message DealRemainCommunityStateContext {}
+
+
+message EvaluateWinnerStateContext {}
+
+message DeclareWinnerStateContext {
+    Pot pot = 1;
+    int32 potIndex = 2;
+    map<string, PokerHand> winner_hands = 3;
+}
+
+message JackpotStateContext {
+    repeated Jackpot jackpots = 1;
+}
+
+message EndRoundStateContext {}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package txpoker;
+
+import "global_import.proto";
+import "txpoker/card.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Pot {
+    map<string,int32> chips = 1;
+    map<string, int32> winner_chips = 2;
+}
+
+message Table {
+    repeated Card community_cards = 1;
+    map<string, CardList>  showdown_pocket_cards = 2;
+    repeated Pot pots = 3;
+}

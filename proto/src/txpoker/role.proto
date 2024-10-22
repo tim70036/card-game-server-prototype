@@ -1,0 +1,22 @@
+syntax = "proto3";
+package txpoker.role;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+enum Role {
+	UNDEFINED = 0;
+	SB        = 1;
+	BB        = 2;
+	UTG       = 3;
+	UTG1      = 4;
+	UTG2      = 5;
+	LJ        = 6;
+	HJ        = 7;
+	MP        = 8;
+	CO        = 9;
+	BTN       = 10;
+}

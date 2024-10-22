@@ -1,0 +1,20 @@
+syntax = "proto3";
+package txpoker.betActionType;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+enum BetActionType {
+    UNDEFINED = 0;
+    FOLD = 1;
+    CHECK = 2;
+    BET = 3;
+    CALL = 4;
+    RAISE = 5;
+    ALL_IN = 6;
+    SB = 7;
+    BB = 8;
+}

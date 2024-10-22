@@ -1,0 +1,17 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/participant_state.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Participant {
+  string uid = 1;
+  int32 chip = 2;
+  participantstate.ParticipantState state = 3;
+  bool hasTopUp = 4;
+}

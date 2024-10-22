@@ -1,0 +1,37 @@
+syntax = "proto3";
+package darkchess;
+
+import "global_import.proto";
+import "common/chess_piece.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+option csharp_namespace = "Joker.Gameplay.DarkChess.Models";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+message GridPosition {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message Cell {
+  GridPosition grid_position = 1;
+  common.CnChessPiece piece = 2; // InvalidPiece if cell is empty
+  bool is_revealed = 3;
+  bool is_empty = 4;
+}
+
+message CapturedPieces {
+  repeated common.CnChessPiece pieces = 1; // append latest captured pieces
+}
+
+message Board {
+  repeated Cell cells = 1; // 32 cells
+}
+
+message LastActionCell {
+  GridPosition grid_position = 1;
+  common.CnChessPiece piece = 2; // InvalidPiece if cell is empty
+  bool is_reveal_action = 3;
+  bool is_move_action = 4;
+  bool is_capture_action = 5;
+}

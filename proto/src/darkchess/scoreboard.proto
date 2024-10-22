@@ -1,0 +1,40 @@
+syntax = "proto3";
+package darkchess;
+
+import"global_import.proto";
+import "common/exp_info.proto";
+import "darkchess/enum/enum.proto";
+import "darkchess/board.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/darkchessgrpc;";
+
+option csharp_namespace = "Joker.Gameplay.DarkChess.Models";
+option (csharp_assembly) = "Joker.Gameplay.DarkChess";
+
+message RoundScore {
+  string uid = 1;
+  int32 points = 2;
+  int32 raw_profits = 3;
+  CapturedPieces captured_pieces = 4;
+  ScoreModifierType score_modifier = 5;
+}
+
+message RoundScoreboard {
+  repeated RoundScore scores = 1;
+  string winner_uid = 2;
+  bool is_draw = 3;
+}
+
+message GameScore {
+  string uid = 1;
+  int32 profit = 2;
+  common.ExpInfo exp_info = 3;
+  bool is_disconnected = 4;
+  int32 disconnected_profit = 5;
+}
+
+message GameScoreboard {
+  repeated GameScore scores = 1;
+  string winner_uid = 2;
+  bool is_draw = 3;
+}

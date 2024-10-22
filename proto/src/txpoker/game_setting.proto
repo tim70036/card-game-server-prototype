@@ -1,0 +1,31 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message GameSetting {
+    string game_meta_uid = 1;
+
+    int32 small_blind = 2;
+    int32 big_blind = 3;
+
+    google.protobuf.Duration turn_duration = 4;
+    google.protobuf.Duration initial_extra_turn_duration = 5;
+    int32 extra_turn_refill_interval_round = 6;
+    google.protobuf.Duration refill_extra_turn_duration = 7;
+    google.protobuf.Duration max_extra_turn_duration =8;
+
+    google.protobuf.Duration initial_sit_out_duration = 9;
+    google.protobuf.Duration sit_out_refill_interval_duration = 10;
+    google.protobuf.Duration refill_sit_out_duration = 11;
+    google.protobuf.Duration max_sit_out_duration =12;
+
+    int32 min_enter_limit_bb = 13;
+    int32 max_enter_limit_bb = 14;
+    int32 table_size = 15;
+}

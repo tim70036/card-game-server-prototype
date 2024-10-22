@@ -1,0 +1,16 @@
+syntax = "proto3";
+package txpoker.suit;
+
+import "global_import.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+enum Suit {
+    UNDEFINED = 0;
+    CLUBS = 1;
+    DIAMONDS = 2;
+    HEARTS = 3;
+    SPADES = 4;
+}

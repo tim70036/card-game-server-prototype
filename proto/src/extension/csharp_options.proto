@@ -1,0 +1,18 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/extensiongrpc";
+option csharp_namespace = "Joker.Grpc";
+option (csharp_assembly) = "Joker.Common";
+option (csharp_access) = public;
+
+enum CSharpAccess{
+  internal = 0;
+  public = 1;
+}
+
+extend google.protobuf.FileOptions{
+  optional string csharp_assembly = 9001;
+  optional CSharpAccess csharp_access = 9002;
+}

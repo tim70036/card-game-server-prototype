@@ -1,0 +1,18 @@
+syntax = "proto3";
+package common;
+
+import "global_import.proto";
+import "common/connection.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/coregrpc";
+option csharp_namespace = "Joker.Grpc.Services";
+option (csharp_assembly) = "Joker.Common";
+option (csharp_access) = public;
+
+service ConnectionService {
+  rpc Ping(google.protobuf.Empty) returns (PingResponse) {}
+  rpc Connect(ConnectRequest) returns (google.protobuf.Empty) {}
+  rpc Enter(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Leave(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc Close(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}

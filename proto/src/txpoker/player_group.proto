@@ -1,0 +1,24 @@
+syntax = "proto3";
+package txpoker;
+
+
+import "global_import.proto";
+import "txpoker/role.proto";
+import "txpoker/card.proto";
+
+option go_package = "card-game-server-prototype/pkg/grpc/txpokergrpc";
+option csharp_namespace = "Joker.Gameplay.TxPoker.Models";
+option (csharp_assembly) = "Joker.Gameplay.TxPoker";
+
+message Player {
+    string uid = 1;
+    role.Role role = 2;
+    int32 seat_id = 3;
+    repeated Card pocket_cards = 4;
+    int32 show_fold_type = 5; // 0b00, 0b01, 0b10, 0b11
+    bool has_showdown = 6;
+}
+
+message PlayerGroup {
+    map<string, Player> players = 1;
+}
