@@ -2,9 +2,9 @@
 
 ## **Overview**
 
-A game server framework that can scale with [Agones](https://agones.dev/site/).
+A game server framework aimed for low-latency multiplayer game experience and can scale with [Agones](https://agones.dev/site/) in Kubernetes.
 All logic run on single goroutine, thus it's easier to reason about the game flow.
-The architecture primarily aim for the development of turn based game.
+The architecture provide a basic framework for turn based game development.
 
 ## **Prerequisite**
 
